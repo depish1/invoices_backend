@@ -7,7 +7,8 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "deploy": "npm install && npx tsc"
   },
   "keywords": [],
   "author": "",
@@ -31,6 +32,6 @@
     "concurrently": "^7.6.0",
     "nodemon": "^2.0.20",
     "prisma": "^4.10.1",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.5"
   }
 }
