@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  id       Int     @id @default(autoincrement())
+  email    String  @db.VarChar(100)
+  password String  @db.VarChar(255)
+  name     String? @db.VarChar(255)
+  address1 String? @db.VarChar(255)
+  address2 String? @db.VarChar(255)
+  nip      String? @db.VarChar(32)
+  phone    Int?
+}
+
+model invoice_head {
+  id               Int      @id @default(autoincrement())
+  user_id          Int
+  seller_name      String   @db.VarChar(255)
+  seller_address1  String   @db.VarChar(255)
+  seller_address2  String?  @db.VarChar(255)
+  seller_nip       String?  @db.VarChar(255)
+  buyer_name       String   @db.VarChar(255)
+  buyer_address1   String   @db.VarChar(255)
+  buyer_address2   String?  @db.VarChar(255)
+  buyer_nip        String?  @db.VarChar(255)
+  create_date      DateTime @default(now()) @db.Date
+  gross_sum_amount Float    @db.Float
+}
+
+model products {
+  id           Int    @id @default(autoincrement())
+  invoice_id   Int
+  name         String @db.VarChar(255)
+  quantity     Int
+  net_price    Float  @db.Float
+  tax_rate     Float  @db.Float
+  gross_amount Float  @db.Float
+}
