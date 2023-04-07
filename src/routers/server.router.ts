@@ -1,10 +1,9 @@
 import express, { Request, Response } from "express";
 
-import { getUserData } from "../controllers/users.controller.js";
-import { verifyTokenMiddleware } from "../middleware/verifyToken.js";
+import { handleHealthEndpoint } from "../controllers/server.controller";
 
 const router = express.Router();
 
-router.get("/health", (req: Request, res: Response) => res.status(200).json({ status: "OK" }));
+router.get("/health", (req: Request, res: Response) => handleHealthEndpoint(req, res));
 
 export default router;
